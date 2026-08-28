@@ -73,10 +73,9 @@ extern "C" void app_main(void)
             continue;   // try again next cycle; do not halt on transient miss
         }
 
-        // 4b. Run inference on the captured frame
-        // MVP: frame->buf is assumed RGB888 here — format conversion
-        //   from JPEG/YUV will be added inside inference_run() in the
-        //   inference implementation pass.
+        // 4b. Run inference on the captured frame.
+        // frame->buf is raw JPEG bytes — inference_run() owns the full
+        // decode pipeline: JPEG → grayscale → 96×96 → INT8 tensor → Invoke().
         inference_result_t result = {};
         esp_err_t infer_ret = inference_run(frame->buf, frame->len, &result);
 
