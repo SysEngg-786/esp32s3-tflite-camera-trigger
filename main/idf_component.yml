@@ -1,0 +1,30 @@
+# File: idf_component.yml
+# Path: esp32s3-tflite-camera-trigger/main/idf_component.yml
+# Role: Declares managed component dependencies pulled from the Espressif
+#       Component Registry at build time via idf_component_manager.
+#
+# Design decision — two dependencies only, both first-party Espressif:
+#   1. esp32-camera  : OV2640 camera driver, frame buffer management,
+#                      PSRAM-backed DMA pipeline. Handles all low-level
+#                      sensor register programming — we do not reinvent this.
+#   2. esp-tflite-micro : TFLite Micro ported and optimized for ESP32-S3,
+#                      exposes the S3 vector extensions through the standard
+#                      TFLite Micro interpreter API. Industry-recognized
+#                      framework name — chosen over ESP-DL for portfolio
+#                      signal and client recognition.
+#
+# No third-party dependencies. Both components are actively maintained and
+# v5.x compatible. Version floor set to last known stable; manager resolves
+# upward to latest compatible release.
+#
+# MVP note: no optional components (e.g. esp-mqtt, esp-tls) declared here.
+#   HTTP trigger uses the built-in esp_http_client — no extra dependency needed.
+
+dependencies:
+  idf: ">=5.0.0"
+
+  # OV2640 camera driver — frame capture and DMA buffer management
+  espressif/esp32-camera: ">=2.0.0"
+
+  # TFLite Micro for ESP32-S3 — on-device inference engine
+  espressif/esp-tflite-micro: ">=1.0.0"

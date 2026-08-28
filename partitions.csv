@@ -1,0 +1,33 @@
+# File: partitions.csv
+# Path: esp32s3-tflite-camera-trigger/partitions.csv
+# Role: Custom partition table for the Xiao ESP32-S3 Sense (8 MB flash).
+#
+# Layout rationale — four partitions, each sized to its actual occupant:
+#
+#   nvs      20 KB  — Non-volatile storage: WiFi credentials, runtime config.
+#                     Minimum useful NVS size; enlarged post-MVP if needed.
+#
+#   otadata   8 KB  — OTA state partition. Not used by the MVP (no OTA build
+#                     target defined). Included so the layout does not need
+#                     to change when OTA is added post-MVP — named seam.
+#
+#   factory   2 MB  — Main firmware image. Firmware at MVP is well under 1 MB;
+#                     2 MB gives headroom as TFLite Micro linkage grows.
+#
+#   spiffs    4 MB  — Model storage. MobileNetV2 SSD COCO INT8 is ~3.4 MB.
+#                     4 MB provides ~600 KB headroom for model updates during
+#                     development without repartitioning. Model is loaded once
+#                     at boot into PSRAM inference arena; SPIFFS is not read
+#                     during the inference loop.
+#
+# Total used: 0x9000 + 0x5000 + 0x2000 + 0x200000 + 0x400000 = 0x610000
+# Flash size:                                                    0x800000
+# Unused:                                                        0x1F0000 (~2 MB)
+# The unused tail is intentional — not wasted, available for post-MVP
+# additions (second OTA slot, logging partition) without layout disruption.
+#
+# Name,     Type,  SubType,  Offset,    Size
+nvs,        data,  nvs,      0x9000,    0x5000
+otadata,    data,  ota,      0xe000,    0x2000
+factory,    app,   factory,  0x10000,   0x200000
+spiffs,     data,  spiffs,   0x210000,  0x400000
