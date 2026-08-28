@@ -1,0 +1,47 @@
+# File: Kconfig.projbuild
+# Path: esp32s3-tflite-camera-trigger/main/Kconfig.projbuild
+# Role: Project-level Kconfig menu for runtime configuration.
+#       Settings defined here appear in `idf.py menuconfig` under
+#       "ESP32S3 TFLite Camera Trigger Configuration".
+#       Values are written to sdkconfig (gitignored) — never to source files.
+#
+# Usage:
+#   idf.py menuconfig  →  navigate to project menu  →  set values  →  save
+#   idf.py build       →  values compiled in via CONFIG_ defines
+#
+# Security note: sdkconfig is in .gitignore. Credentials never enter the repo.
+#   Anyone cloning the repo must run menuconfig and supply their own values.
+
+menu "ESP32S3 TFLite Camera Trigger Configuration"
+
+    config WIFI_SSID
+        string "WiFi SSID"
+        default "your-ssid"
+        help
+            SSID of the WiFi access point to connect to.
+            Set via menuconfig — never hardcode in source.
+
+    config WIFI_PASSWORD
+        string "WiFi Password"
+        default "your-password"
+        help
+            Password for the WiFi access point.
+            Set via menuconfig — never hardcode in source.
+
+    config TRIGGER_ENDPOINT_URL
+        string "HTTP trigger endpoint URL"
+        default "http://192.168.1.100:8080/detect"
+        help
+            Full URL for the HTTP POST trigger sent on each detection event.
+            Include protocol, host, port, and path.
+            Example: http://192.168.1.100:8080/detect
+
+    config WIFI_CONNECT_TIMEOUT_MS
+        int "WiFi connection timeout (milliseconds)"
+        default 10000
+        range 5000 30000
+        help
+            Maximum time to wait for WiFi association and IP assignment.
+            MVP default: 10000 ms (10 seconds). Increase for congested networks.
+
+endmenu

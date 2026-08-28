@@ -82,8 +82,8 @@ esp_err_t camera_init(void)
     config.pin_pwdn     = CAM_PIN_PWDN;
     config.pin_reset    = CAM_PIN_RESET;
     config.pin_xclk     = CAM_PIN_XCLK;
-    config.pin_sscb_sda = CAM_PIN_SIOD;   // SCCB data  (I2C-compatible)
-    config.pin_sscb_scl = CAM_PIN_SIOC;   // SCCB clock
+    config.pin_sccb_sda = CAM_PIN_SIOD;   // SCCB data  (I2C-compatible)
+    config.pin_sccb_scl = CAM_PIN_SIOC;   // SCCB clock
     config.pin_d7       = CAM_PIN_D7;
     config.pin_d6       = CAM_PIN_D6;
     config.pin_d5       = CAM_PIN_D5;
