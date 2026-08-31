@@ -19,3 +19,4 @@ sdkconfig
 .idea/
 *.DS_Store
 Thumbs.dbmonitor_out.txt
+monitor_out.txt

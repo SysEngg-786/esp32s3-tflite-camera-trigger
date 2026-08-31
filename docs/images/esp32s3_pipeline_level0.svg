@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4A5568"/>
+    </marker>
+    <marker id="arr-teal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C7A7B"/>
+    </marker>
+    <filter id="sh">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F7FAFC"/>
+      <stop offset="100%" stop-color="#EDF2F7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="420" fill="url(#bg)" rx="16"/>
+  <text x="600" y="36" font-size="18" font-weight="700" fill="#1A202C" text-anchor="middle" letter-spacing="0.3">ESP32-S3 Edge AI Pipeline — Level 0</text>
+  <text x="600" y="56" font-size="11" fill="#718096" text-anchor="middle">Seeed Xiao ESP32-S3 Sense · OV3660 · TFLite Micro · webhook.site confirmed · 31-Aug-2026</text>
+  <line x1="60" y1="66" x2="1140" y2="66" stroke="#CBD5E0" stroke-width="1"/>
+  <!-- CPU0 lane -->
+  <rect x="50" y="78" width="1100" height="80" rx="10" fill="#EBF8FF" fill-opacity="0.5" stroke="#2B6CB0" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="70" y="98" font-size="11" font-weight="700" fill="#2B6CB0">CPU0 — WiFi infrastructure</text>
+  <!-- WiFi paused zone -->
+  <rect x="318" y="83" width="432" height="68" rx="6" fill="#FED7D7" fill-opacity="0.4" stroke="#E53E3E" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="534" y="106" font-size="10" font-weight="700" fill="#C53030" text-anchor="middle">WiFi paused (inference_mode = true)</text>
+  <text x="534" y="121" font-size="9" fill="#C53030" text-anchor="middle">no crosscore ISR preemption during Invoke()</text>
+  <text x="534" y="136" font-size="9" fill="#718096" text-anchor="middle">covers Preprocess + Inference stages</text>
+  <!-- WiFi active zone -->
+  <rect x="762" y="83" width="244" height="68" rx="6" fill="#C6F6D5" fill-opacity="0.5" stroke="#38A169" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="884" y="110" font-size="10" font-weight="700" fill="#276749" text-anchor="middle">WiFi active</text>
+  <text x="884" y="127" font-size="9" fill="#276749" text-anchor="middle">reconnect · HTTP POST · HTTP 200</text>
+  <!-- CPU1 lane -->
+  <rect x="50" y="170" width="1100" height="170" rx="10" fill="#FAF5FF" fill-opacity="0.5" stroke="#805AD5" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="70" y="190" font-size="11" font-weight="700" fill="#805AD5">CPU1 — detect_task (pinned)</text>
+  <!-- Block 1: Capture -->
+  <rect x="68" y="200" width="160" height="110" rx="10" fill="#FFFAF0" stroke="#D69E2E" stroke-width="2.5" filter="url(#sh)"/>
+  <text x="148" y="225" font-size="14" font-weight="700" fill="#D69E2E" text-anchor="middle">① Capture</text>
+  <line x1="88" y1="233" x2="208" y2="233" stroke="#D69E2E" stroke-width="0.5"/>
+  <text x="148" y="252" font-size="10" fill="#4A5568" text-anchor="middle">in: OV3660 sensor</text>
+  <text x="148" y="268" font-size="10" fill="#4A5568" text-anchor="middle">RGB565 · QQVGA</text>
+  <text x="148" y="286" font-size="9" fill="#718096" text-anchor="middle">out: 38,400 byte frame</text>
+  <!-- Block 2: Preprocess -->
+  <rect x="318" y="200" width="160" height="110" rx="10" fill="#FFFFF0" stroke="#B7791F" stroke-width="2.5" filter="url(#sh)"/>
+  <text x="398" y="225" font-size="14" font-weight="700" fill="#B7791F" text-anchor="middle">② Preprocess</text>
+  <line x1="338" y1="233" x2="458" y2="233" stroke="#B7791F" stroke-width="0.5"/>
+  <text x="398" y="252" font-size="10" fill="#4A5568" text-anchor="middle">in: RGB565 frame</text>
+  <text x="398" y="268" font-size="10" fill="#4A5568" text-anchor="middle">→ gray · resize 96x96</text>
+  <text x="398" y="286" font-size="9" fill="#718096" text-anchor="middle">out: INT8 tensor</text>
+  <!-- Block 3: Inference -->
+  <rect x="568" y="200" width="160" height="110" rx="10" fill="#FAF5FF" stroke="#805AD5" stroke-width="2.5" filter="url(#sh)"/>
+  <text x="648" y="225" font-size="14" font-weight="700" fill="#805AD5" text-anchor="middle">③ Inference</text>
+  <line x1="588" y1="233" x2="708" y2="233" stroke="#805AD5" stroke-width="0.5"/>
+  <text x="648" y="252" font-size="10" fill="#4A5568" text-anchor="middle">in: INT8 tensor</text>
+  <text x="648" y="268" font-size="10" fill="#4A5568" text-anchor="middle">TFLite Micro · 91.2 ms</text>
+  <text x="648" y="286" font-size="9" fill="#718096" text-anchor="middle">out: person score</text>
+  <!-- Block 4: Decision -->
+  <rect x="818" y="200" width="160" height="110" rx="10" fill="#F0FFF4" stroke="#38A169" stroke-width="2.5" filter="url(#sh)"/>
+  <text x="898" y="225" font-size="14" font-weight="700" fill="#38A169" text-anchor="middle">④ Decision</text>
+  <line x1="838" y1="233" x2="958" y2="233" stroke="#38A169" stroke-width="0.5"/>
+  <text x="898" y="252" font-size="10" fill="#4A5568" text-anchor="middle">in: person score</text>
+  <text x="898" y="268" font-size="10" fill="#4A5568" text-anchor="middle">threshold 0.60</text>
+  <text x="898" y="286" font-size="9" fill="#718096" text-anchor="middle">out: detection event</text>
+  <!-- Block 5: Dispatch -->
+  <rect x="1018" y="200" width="122" height="110" rx="10" fill="#E6FFFA" stroke="#2C7A7B" stroke-width="2.5" filter="url(#sh)"/>
+  <text x="1079" y="225" font-size="14" font-weight="700" fill="#2C7A7B" text-anchor="middle">⑤ Dispatch</text>
+  <line x1="1030" y1="233" x2="1128" y2="233" stroke="#2C7A7B" stroke-width="0.5"/>
+  <text x="1079" y="252" font-size="10" fill="#4A5568" text-anchor="middle">in: detect event</text>
+  <text x="1079" y="268" font-size="10" fill="#4A5568" text-anchor="middle">HTTP POST · JSON</text>
+  <text x="1079" y="286" font-size="9" fill="#718096" text-anchor="middle">out: HTTP 200 ✓</text>
+  <!-- CPU1 arrows -->
+  <line x1="228" y1="255" x2="308" y2="255" stroke="#4A5568" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="268" y="248" font-size="9" fill="#718096" text-anchor="middle" font-style="italic">RGB565</text>
+  <line x1="478" y1="255" x2="558" y2="255" stroke="#4A5568" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="518" y="248" font-size="9" fill="#718096" text-anchor="middle" font-style="italic">tensor</text>
+  <line x1="728" y1="255" x2="808" y2="255" stroke="#4A5568" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="768" y="248" font-size="9" fill="#718096" text-anchor="middle" font-style="italic">score</text>
+  <line x1="978" y1="255" x2="1008" y2="255" stroke="#4A5568" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="993" y="248" font-size="9" fill="#718096" text-anchor="middle" font-style="italic">event</text>
+  <!-- Boot → Capture -->
+  <line x1="148" y1="158" x2="148" y2="198" stroke="#2C7A7B" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arr-teal)"/>
+  <text x="175" y="183" font-size="8" fill="#2C7A7B">creates detect_task</text>
+  <!-- Dispatch → WiFi (up) -->
+  <line x1="1079" y1="198" x2="1079" y2="153" stroke="#2C7A7B" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+  <!-- Metrics bar -->
+  <rect x="50" y="356" width="1100" height="50" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="600" y="375" font-size="11" fill="#2D3748" text-anchor="middle">
+    <tspan font-weight="700">Invoke(): </tspan><tspan>91.2 ms ±0.05 ms</tspan>
+    <tspan>   |   </tspan>
+    <tspan font-weight="700">WiFi reconnect: </tspan><tspan>3.6–3.8 s (DHCP)</tspan>
+    <tspan>   |   </tspan>
+    <tspan font-weight="700">HTTP: </tspan><tspan>0.007 s</tspan>
+    <tspan>   |   </tspan>
+    <tspan font-weight="700">Confidence: </tspan><tspan>0.63–0.93</tspan>
+  </text>
+  <text x="600" y="394" font-size="10" fill="#718096" text-anchor="middle">All values measured on real hardware · ESP-IDF v5.5.1 · esp-nn optimised kernels · Ref: TNU JST 2026 doi:10.34238/tnu-jst.14341</text>
+</svg>

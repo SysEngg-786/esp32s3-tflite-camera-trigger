@@ -1,0 +1,260 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 680" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <!-- Arrowheads -->
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#4A5568" />
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#2B6CB0" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#2F855A" />
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#E53E3E" />
+    </marker>
+    <marker id="arrow-dashed" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#718096" />
+    </marker>
+    <!-- Shadows -->
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.10" />
+    </filter>
+    <filter id="shadow-light" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.06" />
+    </filter>
+    <!-- Gradients -->
+    <linearGradient id="cpu0-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EBF8FF" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#EBF8FF" stop-opacity="0.05" />
+    </linearGradient>
+    <linearGradient id="cpu1-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FAF5FF" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#FAF5FF" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#F7FAFC" />
+  <!-- Title -->
+  <text x="780" y="38" font-size="24" font-weight="700" fill="#1A202C" text-anchor="middle" letter-spacing="0.5">
+    ESP32-S3 Person Detection Pipeline 
+ Level 0
+  </text>
+  <line x1="200" y1="52" x2="1360" y2="52" stroke="#CBD5E0" stroke-width="1.5" />
+  <!-- ============================================================ -->
+  <!-- LANE LABELS -->
+  <!-- ============================================================ -->
+  <!-- CPU0 Lane (Top) -->
+  <rect x="30" y="70" width="1340" height="195" rx="12" fill="url(#cpu0-bg)" stroke="#2B6CB0" stroke-width="1.5" stroke-dasharray="6,3" />
+  <text x="60" y="100" font-size="15" font-weight="bold" fill="#2B6CB0">CPU0 (PRO_CPU)</text>
+  <text x="60" y="118" font-size="11" fill="#4A5568">WiFi / System / Network 
+ Starts first, initializes all hardware</text>
+  <!-- CPU1 Lane (Bottom) -->
+  <rect x="30" y="275" width="1340" height="195" rx="12" fill="url(#cpu1-bg)" stroke="#805AD5" stroke-width="1.5" stroke-dasharray="6,3" />
+  <text x="60" y="305" font-size="15" font-weight="bold" fill="#805AD5">CPU1 (APP_CPU)</text>
+  <text x="60" y="323" font-size="11" fill="#4A5568">Pipeline / Application / Inference 
+ Starts after CPU0 initializes camera driver</text>
+  <!-- ============================================================ -->
+  <!-- CLOUD BLOCK 
+ Full height = CPU0 + CPU1 combined -->
+  <!-- CPU0: y=70 to y=265 (195px) + CPU1: y=275 to y=470 (195px) + gap (10px) = 400px total -->
+  <!-- Cloud: x=1420, y=70, width=220, height=400 -->
+  <!-- ============================================================ -->
+  <!-- Cloud Block (External) 
+ Double border for external entity -->
+  <!-- Outer border -->
+  <rect x="1420" y="70" width="230" height="400" rx="16" fill="#E6FFFA" stroke="#319795" stroke-width="3" filter="url(#shadow)" />
+  <!-- Inner border (double border effect) -->
+  <rect x="1426" y="76" width="218" height="388" rx="12" fill="none" stroke="#319795" stroke-width="1.5" stroke-dasharray="4,3" />
+  <!-- Cloud Labels -->
+  <text x="1535" y="130" font-size="22" font-weight="bold" fill="#319795" text-anchor="middle">CLOUD</text>
+  <text x="1535" y="156" font-size="12" fill="#4A5568" text-anchor="middle">(External)</text>
+  <line x1="1450" y1="175" x2="1620" y2="175" stroke="#319795" stroke-width="1" />
+  <text x="1535" y="205" font-size="13" font-weight="bold" fill="#2D3748" text-anchor="middle">HTTP POST</text>
+  <text x="1535" y="225" font-size="11" fill="#718096" text-anchor="middle">(incoming request)</text>
+  <text x="1535" y="260" font-size="13" font-weight="bold" fill="#2D3748" text-anchor="middle">HTTP 200</text>
+  <text x="1535" y="280" font-size="11" fill="#718096" text-anchor="middle">(response)</text>
+  <line x1="1450" y1="300" x2="1620" y2="300" stroke="#319795" stroke-width="1" />
+  <text x="1535" y="330" font-size="12" font-weight="bold" fill="#2D3748" text-anchor="middle">Webhook Endpoint</text>
+  <text x="1535" y="352" font-size="10" fill="#718096" text-anchor="middle">Owner: cloud provider</text>
+  <text x="1535" y="370" font-size="10" fill="#718096" text-anchor="middle">(external infrastructure)</text>
+  <!-- Vertical Dashed Separator: ESP32 ? Cloud Boundary -->
+  <line x1="1400" y1="70" x2="1400" y2="470" stroke="#CBD5E0" stroke-width="2" stroke-dasharray="8,4" />
+  <text x="1400" y="275" font-size="10" fill="#A0AEC0" text-anchor="middle" transform="rotate(-90,1400,275)">ESP32 Internal</text>
+  <text x="1410" y="275" font-size="10" fill="#A0AEC0" text-anchor="middle" transform="rotate(-90,1410,275)">|</text>
+  <text x="1420" y="275" font-size="10" fill="#A0AEC0" text-anchor="middle" transform="rotate(-90,1420,275)">External</text>
+  <!-- ============================================================ -->
+  <!-- CPU0 FLOW (Top Lane) 
+ Spaced 250px apart horizontally -->
+  <!-- ============================================================ -->
+  <!-- Block 1: Boot / Init (X=70) -->
+  <rect x="70" y="120" width="200" height="85" rx="10" fill="#E6FFFA" stroke="#2C7A7B" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="170" y="150" font-size="16" font-weight="bold" fill="#2C7A7B" text-anchor="middle">Boot / Init</text>
+  <text x="170" y="172" font-size="11" fill="#4A5568" text-anchor="middle">CPU0 starts first</text>
+  <text x="170" y="188" font-size="10" fill="#718096" text-anchor="middle">Init: system, camera, WiFi</text>
+  <!-- Block 2: WiFi Active (X=360) -->
+  <rect x="360" y="120" width="200" height="85" rx="10" fill="#EBF8FF" stroke="#2B6CB0" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="460" y="150" font-size="16" font-weight="bold" fill="#2B6CB0" text-anchor="middle">WiFi Active</text>
+  <text x="460" y="172" font-size="11" fill="#4A5568" text-anchor="middle">Connectivity ready</text>
+  <text x="460" y="188" font-size="10" fill="#718096" text-anchor="middle">Owner: web_trigger</text>
+  <!-- Arrow: Boot ? WiFi Active -->
+  <line x1="270" y1="162" x2="350" y2="162" stroke="#2C7A7B" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+  <text x="310" y="154" font-size="9" fill="#2C7A7B" text-anchor="middle" font-style="italic">init done</text>
+  <!-- Block 3: WiFi Paused (X=650) -->
+  <rect x="650" y="120" width="200" height="85" rx="10" fill="#FED7D7" stroke="#E53E3E" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="750" y="142" font-size="16" font-weight="bold" fill="#C53030" text-anchor="middle">? WiFi Paused</text>
+  <text x="750" y="164" font-size="10" fill="#4A5568" text-anchor="middle">No WiFi ISR preemption</text>
+  <text x="750" y="180" font-size="10" fill="#718096" text-anchor="middle">inference_mode = true</text>
+  <text x="750" y="196" font-size="9" fill="#E53E3E" text-anchor="middle">Owner: web_trigger</text>
+  <!-- Arrow: WiFi Active ? WiFi Paused -->
+  <line x1="560" y1="162" x2="640" y2="162" stroke="#2B6CB0" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+  <text x="600" y="154" font-size="9" fill="#2B6CB0" text-anchor="middle" font-style="italic">inference starts</text>
+  <!-- Block 4: WiFi Active (Resumed) (X=940) -->
+  <rect x="940" y="120" width="200" height="85" rx="10" fill="#EBF8FF" stroke="#2B6CB0" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="1040" y="142" font-size="16" font-weight="bold" fill="#2B6CB0" text-anchor="middle">WiFi Active</text>
+  <text x="1040" y="164" font-size="10" fill="#4A5568" text-anchor="middle">ISRs re-enabled</text>
+  <text x="1040" y="180" font-size="10" fill="#718096" text-anchor="middle">inference_mode = false</text>
+  <text x="1040" y="196" font-size="9" fill="#4A5568" text-anchor="middle">Owner: web_trigger</text>
+  <!-- Arrow: WiFi Paused ? WiFi Active (Resumed) -->
+  <line x1="850" y1="162" x2="930" y2="162" stroke="#2B6CB0" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+  <text x="890" y="154" font-size="9" fill="#2B6CB0" text-anchor="middle" font-style="italic">inference ends</text>
+  <!-- ============================================================ -->
+  <!-- CPU1 FLOW (Bottom Lane) 
+ Spaced 250px apart horizontally -->
+  <!-- ============================================================ -->
+  <!-- Block 5: Capture (X=360) -->
+  <rect x="360" y="320" width="200" height="100" rx="10" fill="#FFFAF0" stroke="#D69E2E" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="460" y="346" font-size="16" font-weight="bold" fill="#D69E2E" text-anchor="middle">Capture</text>
+  <text x="460" y="368" font-size="10" fill="#4A5568" text-anchor="middle">Input: OV3660 
+ RGB565</text>
+  <text x="460" y="384" font-size="10" fill="#718096" text-anchor="middle">Output: 160
+120 frame</text>
+  <text x="460" y="400" font-size="9" fill="#D69E2E" text-anchor="middle">Owner: camera module</text>
+  <text x="460" y="414" font-size="8" fill="#718096" text-anchor="middle">(~38 KB)</text>
+  <!-- Block 6: Preprocess (X=650) -->
+  <rect x="650" y="320" width="200" height="100" rx="10" fill="#FFFFF0" stroke="#B7791F" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="750" y="346" font-size="16" font-weight="bold" fill="#B7791F" text-anchor="middle">Preprocess</text>
+  <text x="750" y="368" font-size="10" fill="#4A5568" text-anchor="middle">Input: RGB565 frame</text>
+  <text x="750" y="384" font-size="10" fill="#718096" text-anchor="middle">Output: 96
+96 INT8</text>
+  <text x="750" y="400" font-size="9" fill="#B7791F" text-anchor="middle">Owner: inference module</text>
+  <text x="750" y="414" font-size="8" fill="#718096" text-anchor="middle">(RGB565 ? Gray)</text>
+  <!-- Block 7: Inference (X=940) -->
+  <rect x="940" y="320" width="200" height="100" rx="10" fill="#FAF5FF" stroke="#805AD5" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="1040" y="346" font-size="16" font-weight="bold" fill="#805AD5" text-anchor="middle">Inference</text>
+  <text x="1040" y="368" font-size="10" fill="#4A5568" text-anchor="middle">Input: 96
+96 INT8</text>
+  <text x="1040" y="384" font-size="10" fill="#718096" text-anchor="middle">Output: person score</text>
+  <text x="1040" y="400" font-size="9" fill="#805AD5" text-anchor="middle">Owner: TFLite Micro</text>
+  <text x="1040" y="414" font-size="8" fill="#718096" text-anchor="middle">(MobileNet INT8)</text>
+  <!-- Block 8: Decision (X=1230) -->
+  <rect x="1230" y="320" width="200" height="100" rx="10" fill="#F0FFF4" stroke="#38A169" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="1330" y="346" font-size="16" font-weight="bold" fill="#38A169" text-anchor="middle">Decision</text>
+  <text x="1330" y="368" font-size="10" fill="#4A5568" text-anchor="middle">Input: person score</text>
+  <text x="1330" y="384" font-size="10" fill="#718096" text-anchor="middle">Output: detection event</text>
+  <text x="1330" y="400" font-size="9" fill="#38A169" text-anchor="middle">Owner: application</text>
+  <text x="1330" y="414" font-size="8" fill="#718096" text-anchor="middle">(threshold = 0.60)</text>
+  <!-- ============================================================ -->
+  <!-- ARROWS: CPU1 Pipeline (Left ? Right) -->
+  <!-- ============================================================ -->
+  <!-- Arrow: Capture ? Preprocess -->
+  <line x1="560" y1="370" x2="640" y2="370" stroke="#4A5568" stroke-width="2.5" marker-end="url(#arrow)" />
+  <text x="600" y="362" font-size="9" fill="#4A5568" text-anchor="middle" font-style="italic">frame ready</text>
+  <!-- Arrow: Preprocess ? Inference -->
+  <line x1="850" y1="370" x2="930" y2="370" stroke="#4A5568" stroke-width="2.5" marker-end="url(#arrow)" />
+  <text x="890" y="362" font-size="9" fill="#4A5568" text-anchor="middle" font-style="italic">tensor ready</text>
+  <!-- Arrow: Inference ? Decision -->
+  <line x1="1140" y1="370" x2="1220" y2="370" stroke="#4A5568" stroke-width="2.5" marker-end="url(#arrow)" />
+  <text x="1180" y="362" font-size="9" fill="#4A5568" text-anchor="middle" font-style="italic">score ready</text>
+  <!-- ============================================================ -->
+  <!-- VERTICAL DEPENDENCY: CPU0 Boot ? CPU1 Capture -->
+  <!-- ============================================================ -->
+  <line x1="170" y1="205" x2="170" y2="320" stroke="#2C7A7B" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow-dashed)" />
+  <text x="160" y="270" font-size="9" fill="#2C7A7B" text-anchor="middle" transform="rotate(-90,160,270)" font-style="italic">camera driver init complete</text>
+  <!-- ============================================================ -->
+  <!-- BRACKET: WiFi Paused covers Preprocess + Inference -->
+  <!-- ============================================================ -->
+  <!-- Bracket spanning Preprocess (X=650) to Inference (X=1140) -->
+  <!-- Left bracket line -->
+  <line x1="680" y1="225" x2="680" y2="320" stroke="#E53E3E" stroke-width="1.8" stroke-dasharray="5,3" />
+  <!-- Right bracket line -->
+  <line x1="1070" y1="225" x2="1070" y2="320" stroke="#E53E3E" stroke-width="1.8" stroke-dasharray="5,3" />
+  <!-- Horizontal bar connecting them -->
+  <line x1="680" y1="225" x2="1070" y2="225" stroke="#E53E3E" stroke-width="1.8" stroke-dasharray="5,3" />
+  <!-- Arrow pointing up from bracket to WiFi Paused -->
+  <line x1="875" y1="225" x2="875" y2="210" stroke="#E53E3E" stroke-width="1.8" marker-end="url(#arrow-red)" />
+  <!-- Label on bracket -->
+  <text x="875" y="242" font-size="9" fill="#E53E3E" text-anchor="middle" font-weight="bold">WiFi paused during Preprocess + Inference</text>
+  <!-- ============================================================ -->
+  <!-- TRIGGER DISPATCH (CPU1) ? WiFi (uses WiFi substrate) -->
+  <!-- ============================================================ -->
+  <!-- Arrow from Decision ? Trigger Dispatch (downward) -->
+  <line x1="1330" y1="420" x2="1330" y2="460" stroke="#4A5568" stroke-width="2.5" marker-end="url(#arrow)" />
+  <text x="1340" y="445" font-size="9" fill="#4A5568" text-anchor="start" font-style="italic">event</text>
+  <!-- Trigger Dispatch Block (below Decision) -->
+  <rect x="1230" y="465" width="200" height="90" rx="10" fill="#FFF5F5" stroke="#E53E3E" stroke-width="2.5" filter="url(#shadow)" />
+  <text x="1330" y="491" font-size="15" font-weight="bold" fill="#E53E3E" text-anchor="middle">Trigger Dispatch</text>
+  <text x="1330" y="513" font-size="10" fill="#4A5568" text-anchor="middle">Input: detection event</text>
+  <text x="1330" y="529" font-size="10" fill="#718096" text-anchor="middle">Output: HTTP POST</text>
+  <text x="1330" y="545" font-size="9" fill="#E53E3E" text-anchor="middle">Owner: trigger module</text>
+  <!-- ============================================================ -->
+  <!-- TRIGGER DISPATCH ? WiFi Active (Resumed) 
+ Diagonal Arrow -->
+  <!-- ============================================================ -->
+  <path d="M1330,465 L1330,235 L1040,235 L1040,210" fill="none" stroke="#E53E3E" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-red)" />
+  <text x="1185" y="340" font-size="9" fill="#E53E3E" text-anchor="middle" font-weight="bold">HTTP POST uses WiFi substrate</text>
+  <!-- ============================================================ -->
+  <!-- WiFi Active (Resumed) ? Cloud (HTTP POST) -->
+  <!-- ============================================================ -->
+  <line x1="1140" y1="162" x2="1410" y2="200" stroke="#2B6CB0" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+  <text x="1280" y="175" font-size="10" fill="#2B6CB0" text-anchor="middle" font-weight="bold">HTTP POST</text>
+  <!-- ============================================================ -->
+  <!-- Cloud ? WiFi Active (Resumed) (HTTP 200 response) -->
+  <!-- ============================================================ -->
+  <line x1="1410" y1="230" x2="1140" y2="178" stroke="#2F855A" stroke-width="2.5" marker-end="url(#arrow-green)" />
+  <text x="1280" y="215" font-size="10" fill="#2F855A" text-anchor="middle" font-weight="bold">HTTP 200</text>
+  <!-- ============================================================ -->
+  <!-- MEASURED PERFORMANCE VALUES (Your data + References) -->
+  <!-- ============================================================ -->
+  <!-- Performance Box -->
+  <rect x="70" y="495" width="1520" height="115" rx="12" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5" filter="url(#shadow-light)" />
+  <text x="830" y="523" font-size="16" font-weight="bold" fill="#2D3748" text-anchor="middle">Measured Performance (Real Hardware — Seeed Xiao ESP32-S3 Sense)</text>
+  <line x1="110" y1="535" x2="1550" y2="535" stroke="#E2E8F0" stroke-width="1" />
+  <!-- Row 1: Inference -->
+  <text x="200" y="557" font-size="13" fill="#2D3748">
+    <tspan font-weight="bold" fill="#805AD5">Inference (Invoke()):</tspan>
+    <tspan font-weight="bold"> 91.2 ms mean &#177;0.05 ms</tspan>
+    <tspan fill="#718096">  (ref&#185;: 95 &#177;3.4 ms — same hardware, MobileNetV1-&#945;0.1, TFLite Micro, 96&#215;96&#215;1)</tspan>
+  </text>
+  <!-- Row 2: WiFi Connection -->
+  <text x="200" y="580" font-size="13" fill="#2D3748">
+    <tspan font-weight="bold" fill="#E53E3E">WiFi reconnect (connect&#8594;IP):</tspan>
+    <tspan font-weight="bold"> 3.6&#8211;3.8 s</tspan>
+    <tspan fill="#718096">  (DHCP dominant)  &#183;  HTTP response: 0.007 s  &#183;  HTTP 200 confirmed at webhook.site 31-Aug-2026</tspan>
+  </text>
+  <!-- Row 3: Camera Init -->
+  <text x="200" y="603" font-size="13" fill="#2D3748">
+    <tspan font-weight="bold" fill="#D69E2E">Camera Init (RGB565 QQVGA):</tspan>
+    <tspan font-weight="bold"> ~650 ms</tspan>
+    <tspan fill="#718096">  (measured from boot log — camera_init start to inference_init start)</tspan>
+  </text>
+  <!-- ============================================================ -->
+  <!-- FOOTNOTES WITH SOURCES -->
+  <!-- ============================================================ -->
+  <rect x="70" y="625" width="1520" height="100" rx="8" fill="#F7FAFC" stroke="#E2E8F0" stroke-width="1" />
+  <text x="90" y="645" font-size="11" font-weight="bold" fill="#4A5568">References</text>
+  <text x="90" y="665" font-size="10" fill="#718096">
+    <tspan font-weight="bold" fill="#2D3748">&#185;</tspan>
+    <tspan> TNU Journal of Science and Technology, Vol.231 No.02/S, Feb 2026</tspan>
+    <tspan font-weight="bold" fill="#2B6CB0">  doi:10.34238/tnu-jst.14341</tspan>
+  </text>
+  <text x="90" y="683" font-size="10" fill="#718096">
+    <tspan>  "Benchmarking Tiny Image Classification Models on ESP32 XIAO" — same hardware (ESP32 XIAO S3), same camera (OV3660),</tspan>
+  </text>
+  <text x="90" y="701" font-size="10" fill="#718096">
+    <tspan>  same framework (TFLite Micro), same task (Visual Wake Words Person/No Person), same input (96&#215;96&#215;1).</tspan>
+  </text>
+  <text x="90" y="719" font-size="10" fill="#718096">
+    <tspan>  MobileNetV1-&#945;0.1: 95 &#177;3.4 ms (GPIO measurement, 1000 runs, no WiFi active). Other references pending verification — see SCHEDULING-RESEARCH-NOTES.md.</tspan>
+  </text>
+</svg>
