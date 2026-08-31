@@ -105,24 +105,30 @@ esp_err_t camera_init(void)
     // -- MVP pipeline configuration: QVGA + JPEG ---------------------------
     // Pixel format: JPEG — sensor compresses each frame in hardware.
     //   DMA buffer is small (~30-50 KB); decode is inference module concern.
-    config.pixel_format = PIXFORMAT_JPEG;
+    //config.pixel_format = PIXFORMAT_JPEG;
+    config.pixel_format = PIXFORMAT_RGB565;
 
     // Frame size: QVGA (320×240) — larger than 224×224 model input in both
     //   dimensions, 4x smaller buffer than VGA. MVP baseline for benchmarks.
-    config.frame_size   = FRAMESIZE_QVGA;
+    config.frame_size   = FRAMESIZE_QQVGA;
 
     // JPEG quality: 10 (scale 0=best to 63=worst).
     //   Quality 10 gives good fidelity at QVGA with a small compressed size.
     //   Post-MVP benchmark: quality vs. detection accuracy is a variable to sweep.
-    config.jpeg_quality = 10;
+   //config.jpeg_quality = 63;   // maximum compression — smallest JPEG output
+                              // prevents FB-OVF at QQVGA DMA buffer size, 
+                              // quality effect on 96×96 inference is a benchmark variable
+                              //  this is  second chnage  we chnaged  10 to 30 now  to  63
+                              // jpeg_quality not applicable for RGB565 — raw pixel format, no compression
+                              // Frame buffer size: 160 × 120 × 2 bytes = 38,400 bytes — deterministic, no overflow
 
     // Frame buffer count: 2 in PSRAM — double buffering.
     //   Buffer 0 is held by inference while buffer 1 captures the next frame.
     //   Requires PSRAM; sdkconfig.defaults enables OPI PSRAM on Xiao S3 Sense.
     config.fb_count     = 2;
-
+  
     // Frame buffer location: PSRAM — internal SRAM cannot hold two QVGA buffers.
-    config.fb_location  = CAMERA_FB_IN_PSRAM;
+    config.fb_location  = CAMERA_FB_IN_PSRAM;  //   changed   fom PSRAM to DRAM, then  chnaged  back to PSRAM
 
     // Grab mode: CAMERA_GRAB_LATEST — always return the newest captured frame.
     //   At 1-3 FPS inference, multiple frames accumulate during each Invoke().
@@ -138,8 +144,8 @@ esp_err_t camera_init(void)
                  err, esp_err_to_name(err));
         return err;
     }
-
-    ESP_LOGI(TAG, "camera_init: OV3660 initialised — QVGA JPEG, 2 PSRAM buffers");
+    ESP_LOGI(TAG, "camera_init: OV3660 initialised — QQVGA JPEG, quality 30, 2 PSRAM buffers");
+    
     return ESP_OK;
 }
 

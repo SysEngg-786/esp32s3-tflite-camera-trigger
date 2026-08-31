@@ -1,0 +1,30 @@
+# File: Kconfig.projbuild
+# Path: esp32s3-tflite-camera-trigger/tests/wifi_sta/main/Kconfig.projbuild
+# Role: Minimal Kconfig for WiFi test — SSID, password, and retry count only.
+#
+# Set via: idf.py menuconfig → "WiFi Station Test Configuration"
+
+menu "WiFi Station Test Configuration"
+
+    config TEST_WIFI_SSID
+        string "WiFi SSID"
+        default "your-ssid"
+        help
+            SSID of the access point to connect to.
+
+    config TEST_WIFI_PASSWORD
+        string "WiFi Password"
+        default "your-password"
+        help
+            Password for the access point.
+
+    config TEST_WIFI_MAX_RETRY
+        int "Maximum connection retries"
+        default 5
+        range 1 10
+        help
+            Number of times to retry association before giving up.
+            Default 5 — higher than main project (1) to give the
+            reference test more attempts on a congested AP.
+
+endmenu

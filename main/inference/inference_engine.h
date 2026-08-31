@@ -1,23 +1,31 @@
 // File: inference_engine.h
 // Path: esp32s3-tflite-camera-trigger/main/inference/inference_engine.h
 // Role: Public interface for the inference module.
-//       Owns: model load from C array, TFLite Micro interpreter lifecycle,
-//             frame preprocessing (JPEG → model input format), inference run.
-//       Does not own: frame capture (camera module) or HTTP dispatch (trigger module).
+//       Owns: model load, TFLite Micro interpreter, frame preprocessing,
+//             inference run, result population.
 //
 // MVP model: Person detection — MobileNet INT8, 96×96 grayscale input.
-//   Sourced from espressif/esp-tflite-micro managed component,
-//   examples/person_detection/main/person_detect_model_data.cc
-//   Copied to main/model/ for source tracking.
 //
-// Design decision — inference module owns the full preprocessing chain:
-//   Preprocessing is model-specific. Person detection needs grayscale 96×96;
-//   COCO SSD needs RGB 224×224. The camera module passes raw JPEG bytes and
-//   does not need to know what the model expects. When the model changes in
-//   the benchmark pass, only this module changes — nothing in camera or main.
+// Preprocessing pipeline — direct RGB565 → grayscale → 96×96 (no intermediate buffer):
+//   For each 96×96 output pixel:
+//     1. Nearest-neighbor map to QQVGA source pixel (160×120)
+//     2. Read RGB565 pixel (2 bytes) directly from camera frame buffer
+//     3. Extract R5/G6/B5, scale to R8/G8/B8
+//     4. Convert to grayscale: (77R + 150G + 29B) >> 8  [ITU-R BT.601]
+//     5. Quantize to INT8: gray - zero_point
+//   No intermediate RGB888 buffer — eliminates 57,600 byte allocation.
+//   No fmt2rgb888() call — eliminates bulk PSRAM write from CPU1.
+//   Minimises cross-core cache coherency ISRs from WiFi/PSRAM interaction.
 //
-// MVP note: single model, single interpreter, no hot-swap.
-//   One result per call — no temporal smoothing across frames.
+// Memory layout:
+//   Tensor arena:  130 KB  internal SRAM  (MALLOC_CAP_INTERNAL)
+//   Camera frames:  75 KB  PSRAM          (2 × 38,400 bytes, owned by camera module)
+//   No RGB buffer — eliminated by direct RGB565→grayscale conversion.
+//
+// Core affinity:
+//   inference_init() called from app_main on CPU0.
+//   inference_run() called from detect_task pinned to CPU1.
+//   Arena in internal SRAM — no cross-core cache pressure during Invoke().
 
 #pragma once
 
@@ -30,49 +38,37 @@
 extern "C" {
 #endif
 
-// ── Model input dimensions — person detection model ───────────────────────
-// These constants change when the model changes in the benchmark pass.
-// All preprocessing targets these dimensions — nothing in the caller changes.
-#define INFERENCE_INPUT_WIDTH     96    // model input width  (pixels)
-#define INFERENCE_INPUT_HEIGHT    96    // model input height (pixels)
-#define INFERENCE_INPUT_CHANNELS  1     // grayscale — 1 channel
+// Model input dimensions
+#define INFERENCE_INPUT_WIDTH     96
+#define INFERENCE_INPUT_HEIGHT    96
+#define INFERENCE_INPUT_CHANNELS  1    // grayscale
 
-// ── PSRAM arena size ──────────────────────────────────────────────────────
-// Person detection model requires ~150KB. 200KB provides headroom.
-// Training document data point: arena size is one of the four memory
-// contributors tracked in the flash/PSRAM build-up table.
-#define INFERENCE_ARENA_SIZE      (200 * 1024)
+// Tensor arena — internal SRAM.
+// Measured usage: 122,580 bytes. 130KB = 133,120 bytes (~10KB headroom).
+#define INFERENCE_ARENA_SIZE      (130 * 1024)
 
-// ── Person detection output indices ──────────────────────────────────────
-#define INFERENCE_SCORE_NO_PERSON  0   // output tensor index — no person class
-#define INFERENCE_SCORE_PERSON     1   // output tensor index — person class
+// Person detection output indices
+#define INFERENCE_SCORE_NO_PERSON  0
+#define INFERENCE_SCORE_PERSON     1
 
-// ── Confidence threshold ──────────────────────────────────────────────────
-// Scores are dequantized to [0.0, 1.0] float before comparison.
-// 0.6 = 60% confidence required for detection_valid = true.
-// Tunable without recompile — adjust here and rebuild.
+// Confidence threshold
 #define INFERENCE_CONFIDENCE_THRESHOLD  0.6f
 
-// ── Inference result ──────────────────────────────────────────────────────
-// Populated by inference_run() on each call.
+// Inference result
 typedef struct {
-    int   class_id;         // detected class index (INFERENCE_SCORE_PERSON = 1)
-    float confidence;       // dequantized confidence in range [0.0, 1.0]
-    bool  detection_valid;  // true only when confidence >= INFERENCE_CONFIDENCE_THRESHOLD
+    int   class_id;
+    float confidence;
+    bool  detection_valid;
 } inference_result_t;
 
-// Load model from C array, allocate PSRAM arena, build TFLite Micro interpreter.
-// Must be called once at boot. Returns ESP_OK on success.
-// Caller halts on failure (MVP behaviour — no recovery).
+// Load model, allocate arena, build interpreter. Call once at boot.
 esp_err_t inference_init(void);
 
-// Full per-frame pipeline:
-//   JPEG decode → grayscale → resize to 96×96 → INT8 tensor → Invoke() → result.
-// jpeg_data: raw JPEG buffer from camera_capture_frame()->buf
-// jpeg_len:  buffer length in bytes (camera_capture_frame()->len)
-// result:    populated on ESP_OK return; detection_valid indicates threshold cleared.
-esp_err_t inference_run(const uint8_t*      jpeg_data,
-                        size_t              jpeg_len,
+// Direct pipeline: RGB565 frame → grayscale resize → INT8 tensor → Invoke() → result.
+// frame_data: raw RGB565 from camera_capture_frame()->buf
+// frame_len:  bytes (expected 38,400 for QQVGA RGB565)
+esp_err_t inference_run(const uint8_t*      frame_data,
+                        size_t              frame_len,
                         inference_result_t* result);
 
 #ifdef __cplusplus

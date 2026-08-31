@@ -1,0 +1,19 @@
+# File: sdkconfig.defaults
+# Path: esp32s3-tflite-camera-trigger/tests/wifi_sta/sdkconfig.defaults
+# Role: Minimal hardware baseline for the WiFi station test.
+#
+# Deliberately minimal — no PSRAM, no camera, no custom partition table.
+# This isolates the WiFi stack from all other hardware dependencies.
+# If WiFi connects here but not in the main project, the interaction
+# between PSRAM/camera init and WiFi init is the suspect.
+#
+# Flash: 8MB — matches Xiao ESP32-S3 Sense hardware
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+CONFIG_ESPTOOLPY_FLASHSIZE="8MB"
+
+# Main task stack: enlarged slightly for WiFi event handling
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=4096
+
+# WiFi RX buffers: modest increase for stable association
+CONFIG_ESP_WIFI_STATIC_RX_BUFFER_NUM=10
+CONFIG_ESP_WIFI_DYNAMIC_RX_BUFFER_NUM=32

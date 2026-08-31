@@ -34,7 +34,7 @@ menu "ESP32S3 TFLite Camera Trigger Configuration"
         help
             Full URL for the HTTP POST trigger sent on each detection event.
             Include protocol, host, port, and path.
-            Example: http://192.168.1.100:8080/detect
+            Example: http://192.168.100.22:8080/detect
 
     config WIFI_CONNECT_TIMEOUT_MS
         int "WiFi connection timeout (milliseconds)"

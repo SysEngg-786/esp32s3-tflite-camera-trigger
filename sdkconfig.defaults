@@ -59,6 +59,23 @@ CONFIG_ESP_WIFI_DYNAMIC_RX_BUFFER_NUM=32
 
 # ── Camera clock ───────────────────────────────────────────────────────────
 # XCLK conservative default for first bring-up.
-# The OV2640 is stable at 20 MHz; 10 MHz is available if signal integrity
+# The OV3660 is stable at 20 MHz; 10 MHz is available if signal integrity
 # issues appear on a specific board (rework in camera_init.cpp, not here).
+# Note: CONFIG_CAMERA_XCLK_FREQ_HZ is not a recognised Kconfig key —
+# XCLK is set authoritatively in camera_init.cpp via config.xclk_freq_hz.
 CONFIG_CAMERA_XCLK_FREQ_HZ=20000000
+
+# ── Watchdog ───────────────────────────────────────────────────────────────
+# Default 5s timeout is insufficient for TFLite Micro inference on PSRAM.
+# Set to 60s to allow inference to complete and measure actual duration.
+# Production value: set to measured inference time × 2 after benchmarking.
+# Training document data point: actual measured time recorded from log delta.
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=60
+CONFIG_ESP_WIFI_TASK_PINNED_TO_CORE_1=y
+# ── FreeRTOS tick rate ─────────────────────────────────────────────────────
+# Default 1000Hz (1ms tick) causes crosscore ISR to preempt Invoke() on
+# every tick. Derived from: tick_period >= Invoke_duration (190ms measured).
+# FREERTOS_HZ=5 → 200ms tick → kernel completes within one tick window.
+# Measurement point 1 of scheduling paper experiment (section 8.1).
+CONFIG_FREERTOS_HZ=5
+CONFIG_ESP_INT_WDT_TIMEOUT_MS=500

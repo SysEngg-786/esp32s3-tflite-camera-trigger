@@ -1,0 +1,704 @@
+Executing action: monitor
+Running idf_monitor in directory D:\ESP32Projects\esp32s3-tflite-camera-trigger
+Executing "C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 --print_filter 'main:I trigger:I' D:\ESP32Projects\esp32s3-tflite-camera-trigger\build\esp32s3-tflite-camera-trigger.elf D:\ESP32Projects\esp32s3-tflite-camera-trigger\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py' '-p' 'COM4'"...
+I (1152) main: esp32s3-tflite-camera-trigger — boot (CPU0)
+I (1152) main: step 1: wifi_connect
+I (1152) trigger: wifi_connect: SSID=[Virus...1]
+I (4952) trigger: wifi: connected — IP 192.168.100.204
+I (4952) trigger: wifi_connect: connected successfully
+I (4952) main: step 2: camera_init
+I (5152) main: step 3: inference_init
+I (5152) main: step 4: creating detection task on CPU1
+I (5152) main: all modules initialised — detection task running on CPU1
+I (5152) main: detection_task: running on CPU1
+W (5352) trigger: disconnected — reason: 8 (0x8)
+W (5352) trigger: wifi: retrying (1/3)
+I (5552) main: inference: 91154 us (91 ms) — valid=0 confidence=0.29
+I (9152) trigger: wifi: connected — IP 192.168.100.204
+W (10752) trigger: disconnected — reason: 8 (0x8)
+W (10752) trigger: wifi: retrying (1/3)
+I (10952) main: inference: 91147 us (91 ms) — valid=0 confidence=0.60
+I (14552) trigger: wifi: connected — IP 192.168.100.204
+W (16152) trigger: disconnected — reason: 8 (0x8)
+W (16152) trigger: wifi: retrying (1/3)
+I (16352) main: inference: 91149 us (91 ms) — valid=0 confidence=0.15
+W (16552) trigger: disconnected — reason: 202 (0xca)
+W (16552) trigger: wifi: retrying (2/3)
+W (18952) trigger: disconnected — reason: 205 (0xcd)
+W (18952) trigger: wifi: retrying (3/3)
+W (21552) trigger: disconnected — reason: 8 (0x8)
+E (21552) trigger: wifi: association failed after 3 attempt(s)
+I (21552) main: inference: 91141 us (91 ms) — valid=0 confidence=0.36
+W (21952) trigger: disconnected — reason: 202 (0xca)
+W (21952) trigger: wifi: retrying (1/3)
+W (24352) trigger: disconnected — reason: 205 (0xcd)
+W (24352) trigger: wifi: retrying (2/3)
+W (26952) trigger: disconnected — reason: 8 (0x8)
+W (26952) trigger: wifi: retrying (3/3)
+I (27152) main: inference: 91312 us (91 ms) — valid=0 confidence=0.36
+W (27352) trigger: disconnected — reason: 202 (0xca)
+E (27352) trigger: wifi: association failed after 3 attempt(s)
+I (32152) main: inference: 91150 us (91 ms) — valid=0 confidence=0.58
+I (35952) trigger: wifi: connected — IP 192.168.100.204
+W (37552) trigger: disconnected — reason: 8 (0x8)
+W (37552) trigger: wifi: retrying (1/3)
+I (37752) main: inference: 91155 us (91 ms) — valid=1 confidence=0.64
+I (37752) main: detection: class=1 confidence=0.64 — waiting for IP
+W (37952) trigger: disconnected — reason: 202 (0xca)
+W (37952) trigger: wifi: retrying (2/3)
+W (40352) trigger: disconnected — reason: 205 (0xcd)
+W (40352) trigger: wifi: retrying (3/3)
+I (43952) trigger: wifi: connected — IP 192.168.100.204
+I (43952) main: wifi ready after 6169 ms — sending trigger
+I (43952) trigger: trigger_send: POST http://192.168.100.22:8080/detect payload={"class_id":1,"confidence":0.641}
+W (49152) trigger: trigger_send: failed: ESP_ERR_HTTP_CONNECT
+W (49152) main: trigger_send failed (ignored at MVP)
+W (54352) trigger: disconnected — reason: 8 (0x8)
+W (54352) trigger: wifi: retrying (1/3)
+I (54352) main: inference: 91158 us (91 ms) — valid=0 confidence=0.21
+W (54752) trigger: disconnected — reason: 202 (0xca)
+W (54752) trigger: wifi: retrying (2/3)
+W (57152) trigger: disconnected — reason: 205 (0xcd)
+W (57152) trigger: wifi: retrying (3/3)
+W (59552) trigger: disconnected — reason: 8 (0x8)
+E (59552) trigger: wifi: association failed after 3 attempt(s)
+I (59752) main: inference: 91144 us (91 ms) — valid=0 confidence=0.17
+W (59952) trigger: disconnected — reason: 202 (0xca)
+W (59952) trigger: wifi: retrying (1/3)
+W (62352) trigger: disconnected — reason: 205 (0xcd)
+W (62352) trigger: wifi: retrying (2/3)
+W (64952) trigger: disconnected — reason: 8 (0x8)
+W (64952) trigger: wifi: retrying (3/3)
+I (65152) main: inference: 91270 us (91 ms) — valid=0 confidence=0.40
+W (65352) trigger: disconnected — reason: 202 (0xca)
+E (65352) trigger: wifi: association failed after 3 attempt(s)
+I (70152) main: inference: 91261 us (91 ms) — valid=0 confidence=0.13
+I (73952) trigger: wifi: connected — IP 192.168.100.204
+W (75552) trigger: disconnected — reason: 8 (0x8)
+W (75552) trigger: wifi: retrying (1/3)
+I (75752) main: inference: 91151 us (91 ms) — valid=0 confidence=0.23
+W (75952) trigger: disconnected — reason: 202 (0xca)
+W (75952) trigger: wifi: retrying (2/3)
+W (78352) trigger: disconnected — reason: 205 (0xcd)
+W (78352) trigger: wifi: retrying (3/3)
+W (80952) trigger: disconnected — reason: 8 (0x8)
+E (80952) trigger: wifi: association failed after 3 attempt(s)
+I (80952) main: inference: 91143 us (91 ms) — valid=0 confidence=0.10
+W (81352) trigger: disconnected — reason: 202 (0xca)
+W (81352) trigger: wifi: retrying (1/3)
+W (83752) trigger: disconnected — reason: 205 (0xcd)
+W (83752) trigger: wifi: retrying (2/3)
+W (86152) trigger: disconnected — reason: 8 (0x8)
+W (86152) trigger: wifi: retrying (3/3)
+I (86352) main: inference: 91140 us (91 ms) — valid=0 confidence=0.22
+W (86552) trigger: disconnected — reason: 202 (0xca)
+E (86552) trigger: wifi: association failed after 3 attempt(s)
+I (91352) main: inference: 91252 us (91 ms) — valid=0 confidence=0.17
+I (95152) trigger: wifi: connected — IP 192.168.100.204
+W (96752) trigger: disconnected — reason: 8 (0x8)
+W (96752) trigger: wifi: retrying (1/3)
+I (96952) main: inference: 91170 us (91 ms) — valid=0 confidence=0.11
+W (97152) trigger: disconnected — reason: 202 (0xca)
+W (97152) trigger: wifi: retrying (2/3)
+W (99552) trigger: disconnected — reason: 205 (0xcd)
+W (99552) trigger: wifi: retrying (3/3)
+W (102152) trigger: disconnected — reason: 8 (0x8)
+E (102152) trigger: wifi: association failed after 3 attempt(s)
+I (102352) main: inference: 91135 us (91 ms) — valid=0 confidence=0.20
+W (102552) trigger: disconnected — reason: 202 (0xca)
+W (102552) trigger: wifi: retrying (1/3)
+W (104952) trigger: disconnected — reason: 205 (0xcd)
+W (104952) trigger: wifi: retrying (2/3)
+W (107552) trigger: disconnected — reason: 8 (0x8)
+W (107552) trigger: wifi: retrying (3/3)
+I (107752) main: inference: 91152 us (91 ms) — valid=0 confidence=0.29
+I (111352) trigger: wifi: connected — IP 192.168.100.204
+W (112952) trigger: disconnected — reason: 8 (0x8)
+W (112952) trigger: wifi: retrying (1/3)
+I (113152) main: inference: 91294 us (91 ms) — valid=0 confidence=0.14
+I (116752) trigger: wifi: connected — IP 192.168.100.204
+W (118352) trigger: disconnected — reason: 8 (0x8)
+W (118352) trigger: wifi: retrying (1/3)
+I (118552) main: inference: 91150 us (91 ms) — valid=0 confidence=0.12
+I (122152) trigger: wifi: connected — IP 192.168.100.204
+W (123752) trigger: disconnected — reason: 8 (0x8)
+W (123752) trigger: wifi: retrying (1/3)
+I (123952) main: inference: 91159 us (91 ms) — valid=0 confidence=0.30
+W (124352) trigger: disconnected — reason: 202 (0xca)
+W (124352) trigger: wifi: retrying (2/3)
+W (126752) trigger: disconnected — reason: 205 (0xcd)
+W (126752) trigger: wifi: retrying (3/3)
+W (129152) trigger: disconnected — reason: 8 (0x8)
+E (129152) trigger: wifi: association failed after 3 attempt(s)
+I (129352) main: inference: 91153 us (91 ms) — valid=0 confidence=0.14
+W (129552) trigger: disconnected — reason: 202 (0xca)
+W (129552) trigger: wifi: retrying (1/3)
+W (131952) trigger: disconnected — reason: 205 (0xcd)
+W (131952) trigger: wifi: retrying (2/3)
+W (134552) trigger: disconnected — reason: 8 (0x8)
+W (134552) trigger: wifi: retrying (3/3)
+I (134752) main: inference: 91148 us (91 ms) — valid=0 confidence=0.17
+W (134952) trigger: disconnected — reason: 202 (0xca)
+E (134952) trigger: wifi: association failed after 3 attempt(s)
+I (139752) main: inference: 91232 us (91 ms) — valid=0 confidence=0.20
+I (143552) trigger: wifi: connected — IP 192.168.100.204
+W (145152) trigger: disconnected — reason: 8 (0x8)
+W (145152) trigger: wifi: retrying (1/3)
+I (145352) main: inference: 91148 us (91 ms) — valid=0 confidence=0.31
+W (145552) trigger: disconnected — reason: 202 (0xca)
+W (145552) trigger: wifi: retrying (2/3)
+W (147952) trigger: disconnected — reason: 205 (0xcd)
+W (147952) trigger: wifi: retrying (3/3)
+W (150552) trigger: disconnected — reason: 8 (0x8)
+E (150552) trigger: wifi: association failed after 3 attempt(s)
+I (150752) main: inference: 91137 us (91 ms) — valid=0 confidence=0.27
+W (150952) trigger: disconnected — reason: 202 (0xca)
+W (150952) trigger: wifi: retrying (1/3)
+W (153352) trigger: disconnected — reason: 205 (0xcd)
+W (153352) trigger: wifi: retrying (2/3)
+W (155952) trigger: disconnected — reason: 8 (0x8)
+W (155952) trigger: wifi: retrying (3/3)
+I (156152) main: inference: 91301 us (91 ms) — valid=0 confidence=0.12
+I (159752) trigger: wifi: connected — IP 192.168.100.204
+W (161352) trigger: disconnected — reason: 8 (0x8)
+W (161352) trigger: wifi: retrying (1/3)
+I (161552) main: inference: 91137 us (91 ms) — valid=0 confidence=0.19
+I (165152) trigger: wifi: connected — IP 192.168.100.204
+W (166752) trigger: disconnected — reason: 8 (0x8)
+W (166752) trigger: wifi: retrying (1/3)
+I (166952) main: inference: 91155 us (91 ms) — valid=0 confidence=0.21
+W (167152) trigger: disconnected — reason: 202 (0xca)
+W (167152) trigger: wifi: retrying (2/3)
+W (169552) trigger: disconnected — reason: 205 (0xcd)
+W (169552) trigger: wifi: retrying (3/3)
+W (172152) trigger: disconnected — reason: 8 (0x8)
+E (172152) trigger: wifi: association failed after 3 attempt(s)
+I (172352) main: inference: 91165 us (91 ms) — valid=0 confidence=0.08
+W (172552) trigger: disconnected — reason: 202 (0xca)
+W (172552) trigger: wifi: retrying (1/3)
+W (174952) trigger: disconnected — reason: 205 (0xcd)
+W (174952) trigger: wifi: retrying (2/3)
+W (177552) trigger: disconnected — reason: 8 (0x8)
+W (177552) trigger: wifi: retrying (3/3)
+I (177752) main: inference: 91154 us (91 ms) — valid=0 confidence=0.14
+W (177952) trigger: disconnected — reason: 202 (0xca)
+E (177952) trigger: wifi: association failed after 3 attempt(s)
+I (182752) main: inference: 91155 us (91 ms) — valid=0 confidence=0.26
+I (186552) trigger: wifi: connected — IP 192.168.100.204
+W (188152) trigger: disconnected — reason: 8 (0x8)
+W (188152) trigger: wifi: retrying (1/3)
+I (188352) main: inference: 91151 us (91 ms) — valid=0 confidence=0.21
+W (188552) trigger: disconnected — reason: 202 (0xca)
+W (188552) trigger: wifi: retrying (2/3)
+W (190952) trigger: disconnected — reason: 205 (0xcd)
+W (190952) trigger: wifi: retrying (3/3)
+W (193552) trigger: disconnected — reason: 8 (0x8)
+E (193552) trigger: wifi: association failed after 3 attempt(s)
+I (193752) main: inference: 91145 us (91 ms) — valid=0 confidence=0.14
+W (193952) trigger: disconnected — reason: 202 (0xca)
+W (193952) trigger: wifi: retrying (1/3)
+W (196352) trigger: disconnected — reason: 205 (0xcd)
+W (196352) trigger: wifi: retrying (2/3)
+W (198952) trigger: disconnected — reason: 8 (0x8)
+W (198952) trigger: wifi: retrying (3/3)
+I (199152) main: inference: 91225 us (91 ms) — valid=0 confidence=0.11
+W (199352) trigger: disconnected — reason: 202 (0xca)
+E (199352) trigger: wifi: association failed after 3 attempt(s)
+I (204152) main: inference: 91358 us (91 ms) — valid=0 confidence=0.38
+I (207952) trigger: wifi: connected — IP 192.168.100.204
+W (209552) trigger: disconnected — reason: 8 (0x8)
+W (209552) trigger: wifi: retrying (1/3)
+I (209752) main: inference: 91149 us (91 ms) — valid=0 confidence=0.12
+I (213352) trigger: wifi: connected — IP 192.168.100.204
+W (214952) trigger: disconnected — reason: 8 (0x8)
+W (214952) trigger: wifi: retrying (1/3)
+I (215152) main: inference: 91294 us (91 ms) — valid=0 confidence=0.10
+W (215352) trigger: disconnected — reason: 202 (0xca)
+W (215352) trigger: wifi: retrying (2/3)
+W (217752) trigger: disconnected — reason: 205 (0xcd)
+W (217752) trigger: wifi: retrying (3/3)
+W (220352) trigger: disconnected — reason: 8 (0x8)
+E (220352) trigger: wifi: association failed after 3 attempt(s)
+I (220552) main: inference: 91171 us (91 ms) — valid=0 confidence=0.17
+W (220752) trigger: disconnected — reason: 202 (0xca)
+W (220752) trigger: wifi: retrying (1/3)
+W (223152) trigger: disconnected — reason: 205 (0xcd)
+W (223152) trigger: wifi: retrying (2/3)
+W (225752) trigger: disconnected — reason: 8 (0x8)
+W (225752) trigger: wifi: retrying (3/3)
+I (225752) main: inference: 91148 us (91 ms) — valid=0 confidence=0.18
+W (226152) trigger: disconnected — reason: 202 (0xca)
+E (226152) trigger: wifi: association failed after 3 attempt(s)
+I (230752) main: inference: 91304 us (91 ms) — valid=0 confidence=0.08
+I (234752) trigger: wifi: connected — IP 192.168.100.204
+W (236152) trigger: disconnected — reason: 8 (0x8)
+W (236152) trigger: wifi: retrying (1/3)
+I (236352) main: inference: 91149 us (91 ms) — valid=0 confidence=0.10
+W (236552) trigger: disconnected — reason: 202 (0xca)
+W (236552) trigger: wifi: retrying (2/3)
+W (238952) trigger: disconnected — reason: 205 (0xcd)
+W (238952) trigger: wifi: retrying (3/3)
+W (241552) trigger: disconnected — reason: 8 (0x8)
+E (241552) trigger: wifi: association failed after 3 attempt(s)
+I (241752) main: inference: 91145 us (91 ms) — valid=0 confidence=0.07
+W (241952) trigger: disconnected — reason: 202 (0xca)
+W (241952) trigger: wifi: retrying (1/3)
+W (244352) trigger: disconnected — reason: 205 (0xcd)
+W (244352) trigger: wifi: retrying (2/3)
+W (246952) trigger: disconnected — reason: 8 (0x8)
+W (246952) trigger: wifi: retrying (3/3)
+I (247152) main: inference: 91237 us (91 ms) — valid=0 confidence=0.11
+W (247352) trigger: disconnected — reason: 202 (0xca)
+E (247352) trigger: wifi: association failed after 3 attempt(s)
+I (252152) main: inference: 91306 us (91 ms) — valid=0 confidence=0.08
+I (255952) trigger: wifi: connected — IP 192.168.100.204
+W (257552) trigger: disconnected — reason: 8 (0x8)
+W (257552) trigger: wifi: retrying (1/3)
+I (257752) main: inference: 91149 us (91 ms) — valid=0 confidence=0.09
+W (257952) trigger: disconnected — reason: 202 (0xca)
+W (257952) trigger: wifi: retrying (2/3)
+W (260352) trigger: disconnected — reason: 205 (0xcd)
+W (260352) trigger: wifi: retrying (3/3)
+W (262952) trigger: disconnected — reason: 8 (0x8)
+E (262952) trigger: wifi: association failed after 3 attempt(s)
+I (262952) main: inference: 91152 us (91 ms) — valid=0 confidence=0.10
+W (263152) trigger: disconnected — reason: 202 (0xca)
+W (263152) trigger: wifi: retrying (1/3)
+W (265552) trigger: disconnected — reason: 205 (0xcd)
+W (265552) trigger: wifi: retrying (2/3)
+W (268152) trigger: disconnected — reason: 8 (0x8)
+W (268152) trigger: wifi: retrying (3/3)
+I (268352) main: inference: 91144 us (91 ms) — valid=0 confidence=0.11
+W (268552) trigger: disconnected — reason: 202 (0xca)
+E (268552) trigger: wifi: association failed after 3 attempt(s)
+I (273352) main: inference: 91392 us (91 ms) — valid=0 confidence=0.07
+I (277152) trigger: wifi: connected — IP 192.168.100.204
+W (278752) trigger: disconnected — reason: 8 (0x8)
+W (278752) trigger: wifi: retrying (1/3)
+I (278952) main: inference: 91151 us (91 ms) — valid=0 confidence=0.10
+I (282552) trigger: wifi: connected — IP 192.168.100.204
+W (284152) trigger: disconnected — reason: 8 (0x8)
+W (284152) trigger: wifi: retrying (1/3)
+I (284152) main: inference: 91154 us (91 ms) — valid=0 confidence=0.21
+W (284552) trigger: disconnected — reason: 202 (0xca)
+W (284552) trigger: wifi: retrying (2/3)
+W (286952) trigger: disconnected — reason: 205 (0xcd)
+W (286952) trigger: wifi: retrying (3/3)
+W (289352) trigger: disconnected — reason: 8 (0x8)
+E (289352) trigger: wifi: association failed after 3 attempt(s)
+I (289552) main: inference: 91152 us (91 ms) — valid=0 confidence=0.08
+W (290952) trigger: disconnected — reason: 2 (0x2)
+W (290952) trigger: wifi: retrying (1/3)
+W (293352) trigger: disconnected — reason: 205 (0xcd)
+W (293352) trigger: wifi: retrying (2/3)
+W (294752) trigger: disconnected — reason: 2 (0x2)
+W (294752) trigger: wifi: retrying (3/3)
+I (294952) main: inference: 91141 us (91 ms) — valid=0 confidence=0.08
+W (296352) trigger: disconnected — reason: 2 (0x2)
+E (296352) trigger: wifi: association failed after 3 attempt(s)
+I (299952) main: inference: 91353 us (91 ms) — valid=0 confidence=0.11
+I (303752) trigger: wifi: connected — IP 192.168.100.204
+W (305352) trigger: disconnected — reason: 8 (0x8)
+W (305352) trigger: wifi: retrying (1/3)
+I (305552) main: inference: 91148 us (91 ms) — valid=0 confidence=0.07
+W (306952) trigger: disconnected — reason: 2 (0x2)
+W (306952) trigger: wifi: retrying (2/3)
+W (309352) trigger: disconnected — reason: 205 (0xcd)
+W (309352) trigger: wifi: retrying (3/3)
+W (310752) trigger: disconnected — reason: 2 (0x2)
+E (310752) trigger: wifi: association failed after 3 attempt(s)
+I (310952) main: inference: 91157 us (91 ms) — valid=0 confidence=0.08
+W (312352) trigger: disconnected — reason: 2 (0x2)
+W (312352) trigger: wifi: retrying (1/3)
+W (314752) trigger: disconnected — reason: 205 (0xcd)
+W (314752) trigger: wifi: retrying (2/3)
+W (316152) trigger: disconnected — reason: 8 (0x8)
+W (316152) trigger: wifi: retrying (3/3)
+I (316352) main: inference: 91142 us (91 ms) — valid=0 confidence=0.09
+I (318352) trigger: wifi: connected — IP 192.168.100.204
+W (321552) trigger: disconnected — reason: 8 (0x8)
+W (321552) trigger: wifi: retrying (1/3)
+I (321552) main: inference: 91158 us (91 ms) — valid=0 confidence=0.07
+I (325352) trigger: wifi: connected — IP 192.168.100.204
+W (326752) trigger: disconnected — reason: 8 (0x8)
+W (326752) trigger: wifi: retrying (1/3)
+I (326752) main: inference: 91156 us (91 ms) — valid=0 confidence=0.09
+W (327152) trigger: disconnected — reason: 202 (0xca)
+W (327152) trigger: wifi: retrying (2/3)
+W (329552) trigger: disconnected — reason: 205 (0xcd)
+W (329552) trigger: wifi: retrying (3/3)
+W (332152) trigger: disconnected — reason: 8 (0x8)
+E (332152) trigger: wifi: association failed after 3 attempt(s)
+I (332352) main: inference: 91147 us (91 ms) — valid=0 confidence=0.08
+W (333752) trigger: disconnected — reason: 2 (0x2)
+W (333752) trigger: wifi: retrying (1/3)
+W (336152) trigger: disconnected — reason: 205 (0xcd)
+W (336152) trigger: wifi: retrying (2/3)
+W (337552) trigger: disconnected — reason: 3 (0x3)
+I (337752) main: inference: 91151 us (91 ms) — valid=0 confidence=0.08
+W (339152) trigger: disconnected — reason: 2 (0x2)
+E (339152) trigger: wifi: association failed after 3 attempt(s)
+I (342752) main: inference: 91185 us (91 ms) — valid=0 confidence=0.07
+I (346552) trigger: wifi: connected — IP 192.168.100.204
+W (348152) trigger: disconnected — reason: 8 (0x8)
+W (348152) trigger: wifi: retrying (1/3)
+I (348352) main: inference: 91148 us (91 ms) — valid=0 confidence=0.12
+W (348552) trigger: disconnected — reason: 202 (0xca)
+W (348552) trigger: wifi: retrying (2/3)
+W (350952) trigger: disconnected — reason: 205 (0xcd)
+W (350952) trigger: wifi: retrying (3/3)
+W (353552) trigger: disconnected — reason: 8 (0x8)
+E (353552) trigger: wifi: association failed after 3 attempt(s)
+I (353552) main: inference: 91143 us (91 ms) — valid=0 confidence=0.10
+I (357352) trigger: wifi: connected — IP 192.168.100.204
+W (358752) trigger: disconnected — reason: 8 (0x8)
+W (358752) trigger: wifi: retrying (1/3)
+I (358952) main: inference: 91144 us (91 ms) — valid=0 confidence=0.07
+W (359152) trigger: disconnected — reason: 202 (0xca)
+W (359152) trigger: wifi: retrying (2/3)
+W (361552) trigger: disconnected — reason: 205 (0xcd)
+W (361552) trigger: wifi: retrying (3/3)
+W (364152) trigger: disconnected — reason: 8 (0x8)
+E (364152) trigger: wifi: association failed after 3 attempt(s)
+I (364352) main: inference: 91245 us (91 ms) — valid=0 confidence=0.17
+W (364552) trigger: disconnected — reason: 202 (0xca)
+W (364552) trigger: wifi: retrying (1/3)
+W (366952) trigger: disconnected — reason: 205 (0xcd)
+W (366952) trigger: wifi: retrying (2/3)
+W (369552) trigger: disconnected — reason: 8 (0x8)
+W (369552) trigger: wifi: retrying (3/3)
+I (369752) main: inference: 91150 us (91 ms) — valid=0 confidence=0.06
+W (369952) trigger: disconnected — reason: 202 (0xca)
+E (369952) trigger: wifi: association failed after 3 attempt(s)
+I (374752) main: inference: 91314 us (91 ms) — valid=0 confidence=0.11
+I (378552) trigger: wifi: connected — IP 192.168.100.204
+W (380152) trigger: disconnected — reason: 8 (0x8)
+W (380152) trigger: wifi: retrying (1/3)
+I (380352) main: inference: 91140 us (91 ms) — valid=0 confidence=0.13
+I (383952) trigger: wifi: connected — IP 192.168.100.204
+W (385552) trigger: disconnected — reason: 8 (0x8)
+W (385552) trigger: wifi: retrying (1/3)
+I (385552) main: inference: 91139 us (91 ms) — valid=0 confidence=0.07
+W (385952) trigger: disconnected — reason: 202 (0xca)
+W (385952) trigger: wifi: retrying (2/3)
+W (388352) trigger: disconnected — reason: 205 (0xcd)
+W (388352) trigger: wifi: retrying (3/3)
+W (390752) trigger: disconnected — reason: 8 (0x8)
+E (390752) trigger: wifi: association failed after 3 attempt(s)
+I (390952) main: inference: 91156 us (91 ms) — valid=0 confidence=0.07
+W (391152) trigger: disconnected — reason: 202 (0xca)
+W (391152) trigger: wifi: retrying (1/3)
+W (393552) trigger: disconnected — reason: 205 (0xcd)
+W (393552) trigger: wifi: retrying (2/3)
+W (396152) trigger: disconnected — reason: 8 (0x8)
+W (396152) trigger: wifi: retrying (3/3)
+I (396352) main: inference: 91151 us (91 ms) — valid=0 confidence=0.09
+W (396552) trigger: disconnected — reason: 202 (0xca)
+E (396552) trigger: wifi: association failed after 3 attempt(s)
+I (401352) main: inference: 91351 us (91 ms) — valid=0 confidence=0.09
+I (405152) trigger: wifi: connected — IP 192.168.100.204
+W (406752) trigger: disconnected — reason: 8 (0x8)
+W (406752) trigger: wifi: retrying (1/3)
+I (406952) main: inference: 91151 us (91 ms) — valid=0 confidence=0.10
+I (410552) trigger: wifi: connected — IP 192.168.100.204
+W (412152) trigger: disconnected — reason: 8 (0x8)
+W (412152) trigger: wifi: retrying (1/3)
+I (412352) main: inference: 91139 us (91 ms) — valid=0 confidence=0.09
+W (412552) trigger: disconnected — reason: 202 (0xca)
+W (412552) trigger: wifi: retrying (2/3)
+W (414952) trigger: disconnected — reason: 205 (0xcd)
+W (414952) trigger: wifi: retrying (3/3)
+W (417552) trigger: disconnected — reason: 8 (0x8)
+E (417552) trigger: wifi: association failed after 3 attempt(s)
+I (417552) main: inference: 91153 us (91 ms) — valid=0 confidence=0.07
+I (421352) trigger: wifi: connected — IP 192.168.100.204
+W (422952) trigger: disconnected — reason: 8 (0x8)
+W (422952) trigger: wifi: retrying (1/3)
+I (423152) main: inference: 91349 us (91 ms) — valid=0 confidence=0.09
+W (423352) trigger: disconnected — reason: 202 (0xca)
+W (423352) trigger: wifi: retrying (2/3)
+W (425752) trigger: disconnected — reason: 205 (0xcd)
+W (425752) trigger: wifi: retrying (3/3)
+W (428352) trigger: disconnected — reason: 8 (0x8)
+E (428352) trigger: wifi: association failed after 3 attempt(s)
+I (428552) main: inference: 91143 us (91 ms) — valid=0 confidence=0.07
+I (432152) trigger: wifi: connected — IP 192.168.100.204
+W (433752) trigger: disconnected — reason: 8 (0x8)
+W (433752) trigger: wifi: retrying (1/3)
+I (433952) main: inference: 91142 us (91 ms) — valid=0 confidence=0.11
+W (434152) trigger: disconnected — reason: 202 (0xca)
+W (434152) trigger: wifi: retrying (2/3)
+W (436552) trigger: disconnected — reason: 205 (0xcd)
+W (436552) trigger: wifi: retrying (3/3)
+W (439152) trigger: disconnected — reason: 8 (0x8)
+E (439152) trigger: wifi: association failed after 3 attempt(s)
+I (439352) main: inference: 91145 us (91 ms) — valid=0 confidence=0.08
+W (439552) trigger: disconnected — reason: 202 (0xca)
+W (439552) trigger: wifi: retrying (1/3)
+W (441952) trigger: disconnected — reason: 205 (0xcd)
+W (441952) trigger: wifi: retrying (2/3)
+W (444552) trigger: disconnected — reason: 8 (0x8)
+W (444552) trigger: wifi: retrying (3/3)
+I (444552) main: inference: 91168 us (91 ms) — valid=0 confidence=0.08
+W (444952) trigger: disconnected — reason: 202 (0xca)
+E (444952) trigger: wifi: association failed after 3 attempt(s)
+I (449552) main: inference: 91230 us (91 ms) — valid=0 confidence=0.07
+I (453352) trigger: wifi: connected — IP 192.168.100.204
+W (454952) trigger: disconnected — reason: 8 (0x8)
+W (454952) trigger: wifi: retrying (1/3)
+I (455152) main: inference: 91237 us (91 ms) — valid=0 confidence=0.12
+W (455352) trigger: disconnected — reason: 202 (0xca)
+W (455352) trigger: wifi: retrying (2/3)
+W (457752) trigger: disconnected — reason: 205 (0xcd)
+W (457752) trigger: wifi: retrying (3/3)
+W (460352) trigger: disconnected — reason: 8 (0x8)
+E (460352) trigger: wifi: association failed after 3 attempt(s)
+I (460552) main: inference: 91158 us (91 ms) — valid=0 confidence=0.08
+W (460752) trigger: disconnected — reason: 202 (0xca)
+W (460752) trigger: wifi: retrying (1/3)
+W (463152) trigger: disconnected — reason: 205 (0xcd)
+W (463152) trigger: wifi: retrying (2/3)
+W (465752) trigger: disconnected — reason: 8 (0x8)
+W (465752) trigger: wifi: retrying (3/3)
+I (465952) main: inference: 91148 us (91 ms) — valid=0 confidence=0.08
+W (466152) trigger: disconnected — reason: 202 (0xca)
+E (466152) trigger: wifi: association failed after 3 attempt(s)
+I (470952) main: inference: 91320 us (91 ms) — valid=0 confidence=0.08
+I (474752) trigger: wifi: connected — IP 192.168.100.204
+W (476352) trigger: disconnected — reason: 8 (0x8)
+W (476352) trigger: wifi: retrying (1/3)
+I (476352) main: inference: 91149 us (91 ms) — valid=0 confidence=0.07
+W (477952) trigger: disconnected — reason: 2 (0x2)
+W (477952) trigger: wifi: retrying (2/3)
+W (480352) trigger: disconnected — reason: 205 (0xcd)
+W (480352) trigger: wifi: retrying (3/3)
+W (481552) trigger: disconnected — reason: 3 (0x3)
+I (481752) main: inference: 91149 us (91 ms) — valid=0 confidence=0.11
+W (483152) trigger: disconnected — reason: 2 (0x2)
+W (483152) trigger: wifi: retrying (1/3)
+W (485552) trigger: disconnected — reason: 205 (0xcd)
+W (485552) trigger: wifi: retrying (2/3)
+W (486952) trigger: disconnected — reason: 8 (0x8)
+W (486952) trigger: wifi: retrying (3/3)
+I (487152) main: inference: 91331 us (91 ms) — valid=0 confidence=0.07
+W (487352) trigger: disconnected — reason: 202 (0xca)
+E (487352) trigger: wifi: association failed after 3 attempt(s)
+I (492152) main: inference: 91286 us (91 ms) — valid=0 confidence=0.07
+I (495952) trigger: wifi: connected — IP 192.168.100.204
+W (497352) trigger: disconnected — reason: 8 (0x8)
+W (497352) trigger: wifi: retrying (1/3)
+I (497552) main: inference: 91152 us (91 ms) — valid=0 confidence=0.13
+I (501152) trigger: wifi: connected — IP 192.168.100.204
+W (502752) trigger: disconnected — reason: 8 (0x8)
+W (502752) trigger: wifi: retrying (1/3)
+I (502952) main: inference: 91168 us (91 ms) — valid=0 confidence=0.07
+W (503152) trigger: disconnected — reason: 202 (0xca)
+W (503152) trigger: wifi: retrying (2/3)
+W (505552) trigger: disconnected — reason: 205 (0xcd)
+W (505552) trigger: wifi: retrying (3/3)
+W (508152) trigger: disconnected — reason: 8 (0x8)
+E (508152) trigger: wifi: association failed after 3 attempt(s)
+I (508352) main: inference: 91154 us (91 ms) — valid=0 confidence=0.10
+W (508552) trigger: disconnected — reason: 202 (0xca)
+W (508552) trigger: wifi: retrying (1/3)
+W (510952) trigger: disconnected — reason: 205 (0xcd)
+W (510952) trigger: wifi: retrying (2/3)
+W (513552) trigger: disconnected — reason: 8 (0x8)
+W (513552) trigger: wifi: retrying (3/3)
+I (513752) main: inference: 91154 us (91 ms) — valid=0 confidence=0.09
+W (513952) trigger: disconnected — reason: 202 (0xca)
+E (513952) trigger: wifi: association failed after 3 attempt(s)
+I (518752) main: inference: 91238 us (91 ms) — valid=0 confidence=0.06
+I (522552) trigger: wifi: connected — IP 192.168.100.204
+W (523952) trigger: disconnected — reason: 8 (0x8)
+W (523952) trigger: wifi: retrying (1/3)
+I (524152) main: inference: 91257 us (91 ms) — valid=0 confidence=0.10
+W (524352) trigger: disconnected — reason: 202 (0xca)
+W (524352) trigger: wifi: retrying (2/3)
+W (526752) trigger: disconnected — reason: 205 (0xcd)
+W (526752) trigger: wifi: retrying (3/3)
+W (529352) trigger: disconnected — reason: 8 (0x8)
+E (529352) trigger: wifi: association failed after 3 attempt(s)
+I (529552) main: inference: 91152 us (91 ms) — valid=0 confidence=0.08
+W (529752) trigger: disconnected — reason: 202 (0xca)
+W (529752) trigger: wifi: retrying (1/3)
+W (532152) trigger: disconnected — reason: 205 (0xcd)
+W (532152) trigger: wifi: retrying (2/3)
+W (534752) trigger: disconnected — reason: 8 (0x8)
+W (534752) trigger: wifi: retrying (3/3)
+I (534952) main: inference: 91149 us (91 ms) — valid=0 confidence=0.08
+W (535352) trigger: disconnected — reason: 202 (0xca)
+E (535352) trigger: wifi: association failed after 3 attempt(s)
+I (539952) main: inference: 91199 us (91 ms) — valid=0 confidence=0.09
+I (543952) trigger: wifi: connected — IP 192.168.100.204
+W (545152) trigger: disconnected — reason: 8 (0x8)
+W (545152) trigger: wifi: retrying (1/3)
+I (545352) main: inference: 91138 us (91 ms) — valid=0 confidence=0.10
+W (545552) trigger: disconnected — reason: 202 (0xca)
+W (545552) trigger: wifi: retrying (2/3)
+W (547952) trigger: disconnected — reason: 205 (0xcd)
+W (547952) trigger: wifi: retrying (3/3)
+W (550552) trigger: disconnected — reason: 8 (0x8)
+E (550552) trigger: wifi: association failed after 3 attempt(s)
+I (550752) main: inference: 91151 us (91 ms) — valid=0 confidence=0.09
+W (550952) trigger: disconnected — reason: 202 (0xca)
+W (550952) trigger: wifi: retrying (1/3)
+W (553352) trigger: disconnected — reason: 205 (0xcd)
+W (553352) trigger: wifi: retrying (2/3)
+W (555952) trigger: disconnected — reason: 8 (0x8)
+W (555952) trigger: wifi: retrying (3/3)
+I (555952) main: inference: 91153 us (91 ms) — valid=0 confidence=0.07
+W (556352) trigger: disconnected — reason: 202 (0xca)
+E (556352) trigger: wifi: association failed after 3 attempt(s)
+I (560952) main: inference: 91317 us (91 ms) — valid=0 confidence=0.07
+I (564752) trigger: wifi: connected — IP 192.168.100.204
+W (566152) trigger: disconnected — reason: 8 (0x8)
+W (566152) trigger: wifi: retrying (1/3)
+I (566352) main: inference: 91148 us (91 ms) — valid=0 confidence=0.10
+W (566552) trigger: disconnected — reason: 202 (0xca)
+W (566552) trigger: wifi: retrying (2/3)
+W (568952) trigger: disconnected — reason: 205 (0xcd)
+W (568952) trigger: wifi: retrying (3/3)
+W (571552) trigger: disconnected — reason: 8 (0x8)
+E (571552) trigger: wifi: association failed after 3 attempt(s)
+I (571552) main: inference: 91139 us (91 ms) — valid=0 confidence=0.08
+I (575352) trigger: wifi: connected — IP 192.168.100.204
+W (576952) trigger: disconnected — reason: 8 (0x8)
+W (576952) trigger: wifi: retrying (1/3)
+I (577152) main: inference: 91275 us (91 ms) — valid=0 confidence=0.09
+I (580752) trigger: wifi: connected — IP 192.168.100.204
+W (582352) trigger: disconnected — reason: 8 (0x8)
+W (582352) trigger: wifi: retrying (1/3)
+I (582552) main: inference: 91139 us (91 ms) — valid=0 confidence=0.10
+I (586152) trigger: wifi: connected — IP 192.168.100.204
+W (587752) trigger: disconnected — reason: 8 (0x8)
+W (587752) trigger: wifi: retrying (1/3)
+I (587952) main: inference: 91146 us (91 ms) — valid=0 confidence=0.08
+I (591552) trigger: wifi: connected — IP 192.168.100.204
+W (593152) trigger: disconnected — reason: 8 (0x8)
+W (593152) trigger: wifi: retrying (1/3)
+I (593352) main: inference: 91148 us (91 ms) — valid=0 confidence=0.09
+W (593552) trigger: disconnected — reason: 202 (0xca)
+W (593552) trigger: wifi: retrying (2/3)
+W (595952) trigger: disconnected — reason: 205 (0xcd)
+W (595952) trigger: wifi: retrying (3/3)
+W (598552) trigger: disconnected — reason: 8 (0x8)
+E (598552) trigger: wifi: association failed after 3 attempt(s)
+I (598752) main: inference: 91133 us (91 ms) — valid=0 confidence=0.09
+W (598952) trigger: disconnected — reason: 202 (0xca)
+W (598952) trigger: wifi: retrying (1/3)
+W (601352) trigger: disconnected — reason: 205 (0xcd)
+W (601352) trigger: wifi: retrying (2/3)
+W (603952) trigger: disconnected — reason: 8 (0x8)
+W (603952) trigger: wifi: retrying (3/3)
+I (603952) main: inference: 91149 us (91 ms) — valid=0 confidence=0.14
+W (604152) trigger: disconnected — reason: 202 (0xca)
+E (604152) trigger: wifi: association failed after 3 attempt(s)
+I (608952) main: inference: 91306 us (91 ms) — valid=0 confidence=0.06
+I (612752) trigger: wifi: connected — IP 192.168.100.204
+W (614352) trigger: disconnected — reason: 8 (0x8)
+W (614352) trigger: wifi: retrying (1/3)
+I (614552) main: inference: 91147 us (91 ms) — valid=0 confidence=0.07
+I (618352) trigger: wifi: connected — IP 192.168.100.204
+W (619752) trigger: disconnected — reason: 8 (0x8)
+W (619752) trigger: wifi: retrying (1/3)
+I (619752) main: inference: 91156 us (91 ms) — valid=0 confidence=0.12
+W (620152) trigger: disconnected — reason: 202 (0xca)
+W (620152) trigger: wifi: retrying (2/3)
+W (622552) trigger: disconnected — reason: 205 (0xcd)
+W (622552) trigger: wifi: retrying (3/3)
+W (624952) trigger: disconnected — reason: 8 (0x8)
+E (624952) trigger: wifi: association failed after 3 attempt(s)
+I (624952) main: inference: 91144 us (91 ms) — valid=0 confidence=0.10
+W (625352) trigger: disconnected — reason: 202 (0xca)
+W (625352) trigger: wifi: retrying (1/3)
+W (627752) trigger: disconnected — reason: 205 (0xcd)
+W (627752) trigger: wifi: retrying (2/3)
+W (630152) trigger: disconnected — reason: 8 (0x8)
+W (630152) trigger: wifi: retrying (3/3)
+I (630152) main: inference: 91146 us (91 ms) — valid=0 confidence=0.07
+I (633952) trigger: wifi: connected — IP 192.168.100.204
+W (635352) trigger: disconnected — reason: 8 (0x8)
+W (635352) trigger: wifi: retrying (1/3)
+I (635552) main: inference: 91149 us (91 ms) — valid=0 confidence=0.07
+W (636952) trigger: disconnected — reason: 2 (0x2)
+W (636952) trigger: wifi: retrying (2/3)
+W (639352) trigger: disconnected — reason: 205 (0xcd)
+W (639352) trigger: wifi: retrying (3/3)
+W (640752) trigger: disconnected — reason: 2 (0x2)
+E (640752) trigger: wifi: association failed after 3 attempt(s)
+I (640952) main: inference: 91154 us (91 ms) — valid=0 confidence=0.07
+W (642352) trigger: disconnected — reason: 2 (0x2)
+W (642352) trigger: wifi: retrying (1/3)
+W (644752) trigger: disconnected — reason: 205 (0xcd)
+W (644752) trigger: wifi: retrying (2/3)
+W (646152) trigger: disconnected — reason: 8 (0x8)
+W (646152) trigger: wifi: retrying (3/3)
+I (646352) main: inference: 91151 us (91 ms) — valid=0 confidence=0.07
+I (648552) trigger: wifi: connected — IP 192.168.100.204
+W (651552) trigger: disconnected — reason: 8 (0x8)
+W (651552) trigger: wifi: retrying (1/3)
+I (651752) main: inference: 91149 us (91 ms) — valid=0 confidence=0.07
+W (651952) trigger: disconnected — reason: 202 (0xca)
+W (651952) trigger: wifi: retrying (2/3)
+W (654352) trigger: disconnected — reason: 205 (0xcd)
+W (654352) trigger: wifi: retrying (3/3)
+W (656952) trigger: disconnected — reason: 8 (0x8)
+E (656952) trigger: wifi: association failed after 3 attempt(s)
+I (657152) main: inference: 91360 us (91 ms) — valid=0 confidence=0.07
+W (657352) trigger: disconnected — reason: 202 (0xca)
+W (657352) trigger: wifi: retrying (1/3)
+W (659752) trigger: disconnected — reason: 205 (0xcd)
+W (659752) trigger: wifi: retrying (2/3)
+W (662352) trigger: disconnected — reason: 8 (0x8)
+W (662352) trigger: wifi: retrying (3/3)
+I (662552) main: inference: 91156 us (91 ms) — valid=0 confidence=0.14
+W (662752) trigger: disconnected — reason: 202 (0xca)
+E (662752) trigger: wifi: association failed after 3 attempt(s)
+I (667552) main: inference: 91201 us (91 ms) — valid=0 confidence=0.09
+I (671352) trigger: wifi: connected — IP 192.168.100.204
+W (672952) trigger: disconnected — reason: 8 (0x8)
+W (672952) trigger: wifi: retrying (1/3)
+I (672952) main: inference: 91153 us (91 ms) — valid=0 confidence=0.06
+I (676752) trigger: wifi: connected — IP 192.168.100.204
+W (678152) trigger: disconnected — reason: 8 (0x8)
+W (678152) trigger: wifi: retrying (1/3)
+I (678352) main: inference: 91148 us (91 ms) — valid=0 confidence=0.10
+W (678552) trigger: disconnected — reason: 202 (0xca)
+W (678552) trigger: wifi: retrying (2/3)
+W (680952) trigger: disconnected — reason: 205 (0xcd)
+W (680952) trigger: wifi: retrying (3/3)
+W (683552) trigger: disconnected — reason: 8 (0x8)
+E (683552) trigger: wifi: association failed after 3 attempt(s)
+I (683552) main: inference: 91148 us (91 ms) — valid=0 confidence=0.10
+I (687352) trigger: wifi: connected — IP 192.168.100.204
+W (688752) trigger: disconnected — reason: 8 (0x8)
+W (688752) trigger: wifi: retrying (1/3)
+I (688952) main: inference: 91148 us (91 ms) — valid=0 confidence=0.08
+W (689152) trigger: disconnected — reason: 202 (0xca)
+W (689152) trigger: wifi: retrying (2/3)
+W (691552) trigger: disconnected — reason: 205 (0xcd)
+W (691552) trigger: wifi: retrying (3/3)
+W (694152) trigger: disconnected — reason: 8 (0x8)
+E (694152) trigger: wifi: association failed after 3 attempt(s)
+I (694352) main: inference: 91152 us (91 ms) — valid=0 confidence=0.08
+W (694552) trigger: disconnected — reason: 202 (0xca)
+W (694552) trigger: wifi: retrying (1/3)
+W (696952) trigger: disconnected — reason: 205 (0xcd)
+W (696952) trigger: wifi: retrying (2/3)
+W (699552) trigger: disconnected — reason: 8 (0x8)
+W (699552) trigger: wifi: retrying (3/3)
+I (699752) main: inference: 91152 us (91 ms) — valid=0 confidence=0.09
+I (703552) trigger: wifi: connected — IP 192.168.100.204
+W (704952) trigger: disconnected — reason: 8 (0x8)
+W (704952) trigger: wifi: retrying (1/3)
+I (705152) main: inference: 91249 us (91 ms) — valid=0 confidence=0.09
+I (708752) trigger: wifi: connected — IP 192.168.100.204
+W (710352) trigger: disconnected — reason: 8 (0x8)
+W (710352) trigger: wifi: retrying (1/3)
+I (710552) main: inference: 91153 us (91 ms) — valid=0 confidence=0.08
+I (714152) trigger: wifi: connected — IP 192.168.100.204
+W (715752) trigger: disconnected — reason: 8 (0x8)
+W (715752) trigger: wifi: retrying (1/3)
+I (715752) main: inference: 91160 us (91 ms) — valid=0 confidence=0.07
+I (719552) trigger: wifi: connected — IP 192.168.100.204
